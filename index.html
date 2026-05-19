@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Food Shop</h1>
+    <a href="/add"><button>Add New Product</button></a>
+    <div>
+        {% for product in products %}
+        <div class="card">
+            <h2>{{ product[1] }}</h2>
+            <p>{{ product[2] }}</p>
+            <p>Price: ${{ product[3] }}</p>
+            <p>Stock: {{ product[4] }}</p>
+            <a href="/buy/{{ product[0] }}">
+                <button {% if product[4]==0 %}disabled{% endif %}>Buy</button>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
